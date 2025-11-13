@@ -1,0 +1,45 @@
+valrose printed, 500, 1500, 3, pieces, minibox
+valrose plain, 500, 1500, 3, pieces, minibox
+ford printed, 500, 1500, 3, pieces, minibox 
+ford plain, 500, 1500, 3, pieces, minibox
+cupcake printed, 500, 1500, 3, pieces, minibox 
+cupcake plain, 500, 1500, 3, pieces, minibox
+12x12x2.5 printed, 500, 1500, 3, pieces, minibox 
+12x12x2.5 plain, 500, 1500, 3, pieces, minibox
+12x12x3.5 printed, 500, 1500, 3, pieces, minibox
+12x12x3.5 plain, 500, 1500, 3, pieces, minibox
+12x12x1.5 printed, 500, 1500, 3, pieces, minibox
+12x12x1.5 plain, 500, 1500, 3, pieces, minibox
+D1 plain no window, 500, 1500, 3, pieces, minibox
+D1 plain w/window, 500, 1500, 3, pieces, minibox
+D1 printed, 500, 1500, 3, pieces, minibox
+D2 plain no window, 500, 1500, 3, pieces, minibox
+D2 plain w/window, 500, 1500, 3, pieces, minibox 
+D2 printed, 500, 1500, 3, pieces, minibox
+7x10 bubble sheet, 3000, 3000, 3, pieces, bubblewrap
+6x12 bubble sheet, 3000, 6000, 3, pieces, bubblewrap
+12x12 bubble sheet, 3000, 3000, 3, pieces, bubblewrap
+bubble roll small, 4, 5, 3, roll, bubblewrap
+bubble roll big, 4, 5, 3, roll, bubblewrap
+D3 master Plain Ver 1, 250, 500, 3, pieces, masterbox
+D3 master Plain Ver 2, 250, 500, 3, pieces, masterbox
+D3 master printed ver 1, 250, 500, 3, pieces, masterbox
+D3 master printed ver 2, 250, 500, 3, pieces, masterbox
+ford master printed, 250, 500, 3, pieces, masterbox
+D1/D2 master printed, 250, 500, 3, pieces, masterbox
+D1/D2 master plain, 250, 500, 3, pieces, masterbox
+1/2x6x12 foam, 1500, 2000, 3, pieces, foam
+1/4x6x12 foam, 1000, 2000, 3, pieces, foam
+1/2x12x12 foam, 1500, 2000, 3, pieces, foam
+1/4x12x12 foam, 1000, 2000, 3, pieces, foam
+1/2x44x80 foam, 50, 2000, 3, pieces, foam
+1/4x44x80 foam, 50, 2000, 3, pieces, foam
+1/2x7.5x10 foam, 1500, 2000, 3, pieces, foam
+1/4x7.5x10 foam, 1000, 2000, 3, pieces, foam
+Powdered Sugar, 10, 15, 2, sack, rawmat
+Cornstarch, 3, 10, 2, sack, rawmat
+Tapioca Starch, 3, 5, 2, sack, rawmat
+Vanilla powder, 10, 20, 3, gram, rawmat
+yellow5, 500, 2000, 3, gram, rawmat
+blue1, 500, 2000, 3, gram, rawmat
+red40, 500, 2000, 3, gram, rawmat
