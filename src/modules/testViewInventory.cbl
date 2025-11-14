@@ -28,6 +28,7 @@
         
         PROCEDURE DIVISION.
            open i-o Inventory
+               call "writeFileCheck" using InvStat
            
            move 1 to itemID
            start Inventory key is not less than itemID
