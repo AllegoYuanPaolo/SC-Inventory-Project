@@ -1,4 +1,4 @@
->>source format free
+$set sourceformat"free"
         IDENTIFICATION DIVISION.
         PROGRAM-ID. length.
        
