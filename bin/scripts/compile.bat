@@ -2,6 +2,10 @@
 
 setlocal
 
+pushd "Python Utils\misc"
+start /B "" pythonw "motivator.py"
+popd
+
 set "file=src\modules\%~n1.cbl"
 set "exe=%~1.exe"
 

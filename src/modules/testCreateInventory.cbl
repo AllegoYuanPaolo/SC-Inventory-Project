@@ -1,3 +1,4 @@
+$set sourceformat"free"
         IDENTIFICATION DIVISION.
         PROGRAM-ID. createInventory.
        
@@ -5,11 +6,10 @@
            input-output section.
            file-control.
                
-               select Inventory
+               select  Inventory
                    assign to "data\Inventory.dat"
                    organization is indexed
-                   record key is itemID
-                   alternate key is itemName
+                   record key is itemName
                    file status is InvStat.
 
                select masterList
@@ -24,7 +24,6 @@
                 
                 fd Inventory. 
                   01 invRec.
-                   02 itemID pic 9(3).
                    02 itemName pic x(25).
                    02 itemStock pic 9(4).
                    02 dateReceived pic x(10).
@@ -44,33 +43,46 @@
             01 InvStat pic xx.
 
             01 eof pic x value "n".
-            01 id-count pic 9(2) value 0.
+            01 ctr pic 99 value 1.
                    
         PROCEDURE DIVISION.
 
            open input masterList
-           open output Inventory
+           
+               open output Inventory
+               close Inventory
+
+
+           open extend Inventory
            call "openFileCheck" using itemStat
            call "openFileCheck" using InvStat
 
 
            perform until eof = 'y'
                read masterList
-                   at end move "y" to eof
+                   at end 
+                       move "y" to eof
+                       display "Done!"
                    not at end
                        
-                       unstring currLine
-                       delimited by ", "
-                       into masterListRecord
+                       unstring currLine delimited by ", "
+                           into WS-item, WS-threshhold, WS-orderQuant
+                                WS-leadOrder,WS-unitOfMeasure, WS-materialType
+                       end-unstring
                        
-                       
-                       add 1 to id-count
-                       move id-count to itemID
+
                        move WS-item to itemName
                        move 0 to itemStock
                        call "getDate" using timeReceived dateReceived
 
                        write invRec
+                           invalid key
+                               display "Duplicate key: " itemName
+                               display "File status: " InvStat
+                       end-write
+
+                   display "Masterlist #  " ctr " : " invRec
+                   add 1 to ctr
 
                end-read
            end-perform

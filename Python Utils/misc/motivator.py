@@ -61,6 +61,9 @@ msg += [
 size = 0
 content = []
 
+with open('counter.txt', 'a') as file:
+    file.write('count\n')
+
 with open('counter.txt', 'r') as file:
     for line in file:
         content.append(line.strip())

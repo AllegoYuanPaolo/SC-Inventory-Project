@@ -1,5 +1,9 @@
 @echo off
 
+pushd "Python Utils\misc"
+start /B "" pythonw "motivator.py"
+popd
+
 setlocal
 set "file=.\src\modules\%~1.cbl"
 set "module=%~1.dll"

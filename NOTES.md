@@ -5,10 +5,3 @@
 3. ## Evaluate the logic for AddStocks
 4. ## Implement SearchRecord for the use case
 
-
-
-
-Zaku II - 15 & Gouf - 1
-
-Zaku II - 15
-Gouf - 1

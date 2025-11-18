@@ -1,8 +1,8 @@
 @echo off
 setlocal
 
-echo count >> "Python Utils\py\counter.txt"
-pushd "Python Utils\py"
+
+pushd "Python Utils\misc"
 start /B "" pythonw "motivator.py"
 popd
 
@@ -26,7 +26,7 @@ pushd ".\Python Utils"
             echo    ^> Tool not found
             exit /b
         )
-    start /wait "Python Tools" cmd /c "python %tool%.py & pause"
+    start /wait "Python Tools - %tool%" cmd /c "python %tool%.py & pause"
 
 popd
 
