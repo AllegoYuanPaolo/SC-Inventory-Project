@@ -50,6 +50,7 @@
                    move 0 to foundflag
                    
                    perform  until eof = 'y'
+                       move 0 to foundflag
                        read Inventory next record
                            at end
                                move 'y' to eof
@@ -72,12 +73,14 @@
 
                    move 1 to foundITR
 
-                   perform until foundName(foundITR) = spaces
-                       if foundName(foundITR) not = zero
+                   perform until foundITR = 10
+                       if foundName(foundITR) not = spaces
                            display "Result #" foundITR " | "
                                    foundName(foundITR) " | "
                                    foundStock(foundITR) " | "
                            add 1 to foundITR
+                       else
+                           exit perform 
                        end-if
                    end-perform
                        
