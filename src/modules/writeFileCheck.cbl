@@ -15,7 +15,10 @@
            evaluate fileStatus
                when "02"
                    display "   >Indexed: Duplicate Key(Alternate)"
-
+               
+               when "21"
+                   display "   >Indexed: Duplicate Key(Alternate)"
+                   display "       >else: Sequential error"
                when "22"
                    display "   >Indexed: Duplicate Key(Primary)"
 

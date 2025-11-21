@@ -25,7 +25,6 @@
             WORKING-STORAGE SECTION.
             01 InvStat pic xx. 
             01 eof pic x value "n".
-            01 ctr pic 99 value 1.
         
         PROCEDURE DIVISION.
            open input Inventory
@@ -38,11 +37,10 @@
                        not at end
                            call "SafeStockCheck" using itemName itemStock restockStatus
                            rewrite invRec
-                           
-                           display "#"ctr"| " itemName no advancing
+    
+                           display "| " itemName no advancing
                            display "| " itemStock "| " no advancing
                            display "| " dateReceived "| " timeReceived "| " restockStatus "|"
-                           add 1 to ctr
                    end-read
                end-perform 
 

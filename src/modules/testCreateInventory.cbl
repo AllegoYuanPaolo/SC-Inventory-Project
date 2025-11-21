@@ -6,9 +6,10 @@ $set sourceformat"free"
            input-output section.
            file-control.
                
-               select  Inventory
+               select Inventory
                    assign to "data\Inventory.dat"
                    organization is indexed
+                   access mode is dynamic
                    record key is itemName
                    file status is InvStat.
 
@@ -53,7 +54,7 @@ $set sourceformat"free"
                close Inventory
 
 
-           open extend Inventory
+           open i-o Inventory
            call "openFileCheck" using itemStat
            call "openFileCheck" using InvStat
 
@@ -62,7 +63,7 @@ $set sourceformat"free"
                read masterList
                    at end 
                        move "y" to eof
-                       display "Done!"
+                       display "EOF reached"
                    not at end
                        
                        unstring currLine delimited by ", "
@@ -77,11 +78,11 @@ $set sourceformat"free"
 
                        write invRec
                            invalid key
-                               display "Duplicate key: " itemName
-                               display "File status: " InvStat
+                               display "Failure to write"
+                               call "writeFileCheck" using InvStat
                        end-write
 
-                   display "Masterlist #  " ctr " : " invRec
+                   display "Masterlist #" ctr " : " invRec
                    add 1 to ctr
 
                end-read
@@ -90,7 +91,7 @@ $set sourceformat"free"
            
            close masterList
            close Inventory
-
+           display "============================"
            call "testViewInventory"
 
         
