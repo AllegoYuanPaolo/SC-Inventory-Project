@@ -1,10 +1,11 @@
 @echo off
 setlocal
 
-
-pushd "Python Utils\misc"
-start /B "" pythonw "motivator.py"
-popd
+if exist "Python Utils\misc" (
+    pushd "Python Utils\misc"
+    start /B "" pythonw "motivator.py"
+    popd
+)
 
 echo ^> Python Tools:
 echo    ^> ["back" to exit]
