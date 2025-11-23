@@ -1,3 +1,8 @@
 #Ignore the following files 
 
+#Python files
 Python\ Utils/misc/
+
+#Personal scripts
+bin/scripts/motivate.bat
+bin/scripts/updateDoc.bat
