@@ -23,14 +23,17 @@
                
        procedure division using formatTime formatDate.
        
+           *> fucntion to get the date and time
            move function current-date to date-time       
-               
+           
+           *> parse the time
            move hour(1:2) to formatTime(1:2)
            move ':' to formatTime(3:1)
            move minute(1:2) to formatTime(4:2)
            move ":" to formatTime(6:1)
            move second(1:2) to formatTime(7:2)
            
+           *> parse the day
            move dispDay(1:2) to formatDate(1:2)
            move "/" to formatDate(3:1)
            move month(1:2) to formatDate(4:2)

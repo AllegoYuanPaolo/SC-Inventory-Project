@@ -40,8 +40,7 @@
 
         PROCEDURE DIVISION using searchKey foundRecord foundCount.
        
-      *> display "Enter key to search: " no advancing
-      *> accept  searchKey
+       *> set the searchKey to the key (itemName)
         move searchKey to itemName
         
         open i-o Inventory

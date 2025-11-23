@@ -63,4 +63,6 @@
 	- ```shell
 	  debugpath
 	  ```
-- `updateDoc.bat`
+
+---
+to add other parts
