@@ -36,7 +36,9 @@
            move month(1:2) to formatDate(4:2)
            move "/" to formatDate(6:1)
            move year(1:4) to formatDate(7:4)
+           
 
+           *> Formats:
            *> Time: HH:MM:SS | 24hr format
            *> Date: YYYY/MM/DD
 

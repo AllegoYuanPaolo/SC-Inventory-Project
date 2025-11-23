@@ -42,6 +42,7 @@
 
            call "testSearch" using  searchKey foundRecord foundCount
 
+           *> If results are found, it will display the results with numbers
            if foundCount not = 0
                display spaces
                display "Select item to restock:"
@@ -49,22 +50,27 @@
                accept choice
 
                display spaces 
+
                if choice not = 0
+               *> display and prompt for restock
                    display "Item         : " foundName(choice) "|"
                    display "Current stock: " foundStock(choice)
                    display spaces
                    display "Restock Amount: " no advancing
                    accept RestockAmount
                    
+                   *> Open the file to allow rewrite
                    open i-o Inventory
                    move foundName(choice) to itemName
                        read Inventory key is itemName
                            invalid key
                                display "Update failed"
                    
-                           not invalid key
+                           not invalid key *> update stock, as well as time and date
                                compute RestockAmount = RestockAmount + itemStock
                                move RestockAmount to itemStock
+                               call "getDate" using timeReceived, dateReceived
+
                                rewrite invRec
                                    invalid key
                                        display "Failure code: " Invstat
