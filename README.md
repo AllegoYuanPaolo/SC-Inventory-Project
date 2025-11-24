@@ -133,10 +133,14 @@ C:.
 
 ## Requirements:
 - GnuCOBOL 3.3 (This code uses SuperBOL)
-- Visual Studio Code
+	- necessary as some `.cbl` files use `$set sourceformat"free"`
+- Visual Studio Code (or any IDE)
+- Windows 10 or 11
+	- compilation and run scripts are specific to Windows (`.bat` script)
 
 ---
 ## Modules:
+- can also be referred to as *subroutines*, *subprograms*, or *functions*
 ### Primary Modules:
 - `addStocks` 
 	- (Update);  used for restocking, updating the current stocks with new stocks
@@ -194,11 +198,13 @@ C:.
 	- lists the Python utility scripts in `Python Utils\
 		- `add.py` - simple addition calculator
 		- `string.py`- returns the length of an inputted string
+	- usage:
 	- ```shell
 	  utils
 	  ```
 - `DebugPath.bat`
 	- used to check if the `bin\scripts\` scripts are callable from the root directory
+	- usage:
 	- ```shell
 	  debugpath
 	  ```
@@ -229,7 +235,7 @@ C:.
 		- lead time for order
 		- unit of measure
 		- type of material
-	- extracted from the client's manifest
+	- extracted from the client's provided manifest
 - `SafetyStocks.dat`
 	- `INDEXED` organization
 	- Stores the item name, threshold and unit of measure
@@ -243,3 +249,4 @@ C:.
 	  ```
 
 ---
+<img src="COBOL PROJECT Map.drawio.svg" alt="Project map" width="1000" />
