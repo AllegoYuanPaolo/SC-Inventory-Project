@@ -1,7 +1,6 @@
- 
    $set sourceformat"free"
         IDENTIFICATION DIVISION.
-        PROGRAM-ID. testViewInventory.
+        PROGRAM-ID. viewInventory.
        
        environment division.
                input-output section.
