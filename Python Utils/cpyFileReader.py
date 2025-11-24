@@ -9,7 +9,7 @@ with os.scandir("src\\copyLib") as entries:
 
 
 with open("Copybooks.md", 'w') as cpy:
-    cpy.write("---\n # Copybooks (`.cpy`) from `src\\copylib`\n---")
+    cpy.write("---\n # Copybooks (`.cpy`) from `src\\copylib`\n---\n")
     for file in files:
         content = []
         #print(f"\nReading in {file}:")

@@ -1,6 +1,7 @@
 ---
  # Copybooks (`.cpy`) from `src\copylib`
----## src\copyLib\Inventory-rec.cpy:
+---
+## src\copyLib\Inventory-rec.cpy:
 ```cobol
            fd Inventory. 
                   01 invRec.
