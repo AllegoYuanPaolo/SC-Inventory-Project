@@ -14,7 +14,7 @@ set "exe=%~1.exe"
 shift
 
 echo ^> Compiling. . .
-cobc -x %file% -o bin\programs\%exe%
+cobc -x %file% /I src/copylib -o bin\programs\%exe%
 if errorlevel 1 (
     echo ^> ERROR compiling!
     exit /b 1

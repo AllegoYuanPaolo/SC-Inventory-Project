@@ -6,12 +6,7 @@ $set sourceformat"free"
            input-output section.
            file-control.
                
-               select Inventory
-                   assign to "data\Inventory.dat"
-                   organization is indexed
-                   access mode is dynamic
-                   record key is itemName
-                   file status is InvStat.
+              copy "Inventory".
 
                select masterList
                    assign to "data\items.txt"
@@ -23,13 +18,7 @@ $set sourceformat"free"
                fd masterList.
                    01 currLine pic x(55).
                 
-                fd Inventory. 
-                  01 invRec.
-                   02 itemName pic x(25).
-                   02 itemStock pic 9(4).
-                   02 dateReceived pic x(10).
-                   02 timeReceived pic x(8).
-                   02 restockStatus pic x(25).
+              copy "Inventory-rec".
             WORKING-STORAGE SECTION.
            
            01  masterListRecord.

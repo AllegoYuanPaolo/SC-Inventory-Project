@@ -132,10 +132,20 @@ C:.
 ---
 
 ## Requirements:
-- GnuCOBOL 3.3 (This code uses SuperBOL)
+- **GnuCOBOL 3.3 (This code uses SuperBOL)**
 	- necessary as some `.cbl` files use `$set sourceformat"free"`
-- Visual Studio Code (or any IDE)
-- Windows 10 or 11
+- **Visual Studio Code**
+	- with the extension COBOL by BitLang(bitlang.COBOL)
+	- and workspace settings in `settings.json` of:
+	- ```json
+	  {
+		  "coboleditor.parse_copybooks_for_references": true,
+		  "coboleditor.copybookdirs": [
+			  "src/copylib"
+		  ]
+	  }
+	  ```
+- **Windows 10 or 11**
 	- compilation and run scripts are specific to Windows (`.bat` script)
 
 ---
@@ -235,7 +245,7 @@ C:.
 		- lead time for order
 		- unit of measure
 		- type of material
-	- extracted from the client's provided manifest
+	- extracted from the client's manifest
 - `SafetyStocks.dat`
 	- `INDEXED` organization
 	- Stores the item name, threshold and unit of measure
@@ -249,4 +259,7 @@ C:.
 	  ```
 
 ---
-<img src="COBOL PROJECT Map.drawio.svg" alt="Project map" width="1000" />
+# Project Map
+<img src="COBOL PROJECT Map.drawio.svg" alt="Project map" width="1000"/> 
+
+---

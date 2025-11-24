@@ -6,6 +6,9 @@
 Python\ Utils/misc/
 bin/scripts/motivate.bat
 
-#Local Utility scripts
+#Local Utility
 bin/scripts/updateDoc.bat
 bin/scripts/folderTree.bat
+.vscode/
+.obsidian/
+__pycache__/

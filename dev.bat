@@ -14,7 +14,7 @@ echo    Workspace PATH updated! You can now run:
         echo ^> %%~nF
         echo    ^> %%~fF
     )
-call scriptsDebugPath.bat
+call DebugPath.bat
 
 
 
