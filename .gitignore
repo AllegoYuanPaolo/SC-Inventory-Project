@@ -6,3 +6,6 @@ Python\ Utils/misc/
 #Personal scripts
 bin/scripts/motivate.bat
 bin/scripts/updateDoc.bat
+
+#Local Utility scripts
+bin/scripts/folderTree.bat
