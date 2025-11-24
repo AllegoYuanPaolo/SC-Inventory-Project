@@ -14,8 +14,7 @@
                        assign to "data\SafetyStocks.dat"
                        organization is indexed
                        access mode is dynamic
-                       record key is item-id
-                       alternate key is item
+                       record key is item
                        file status is safeStat.
 
         DATA DIVISION.
@@ -27,7 +26,6 @@
            
            FD safetyStock.
                01 SafetyRec.
-                   02 item-id pic 9(3).
                    02 item pic x(25).
                    02 threshold pic 9(4).
                    02 UoM pic x(6).
@@ -56,7 +54,11 @@
            display "Displaying contents"
 
            open input safeStock
-           open output safetyStock
+              
+               open output safetyStock
+               close safetyStock
+
+           open i-o safetyStock
 
                if fileStat not = "00"
                    call "openFileCheck" using fileStat, safeStock
@@ -87,9 +89,9 @@
                           display "DEBUG| Fields:  "fields
 
                           
-                          add 1 to itemIDent
+                  
                          
-                          move itemIDent to item-id
+           
                           move WS-item to item
                           move WS-threshhold to threshold
                           move WS-unitOfMeasure to UoM
@@ -99,7 +101,7 @@
 
 
                           display "Written: "
-               display item-id " | " item " | " threshold " | " UoM
+               display "| " item " | " threshold " | " UoM
                display " "
                end-read
              end-perform.

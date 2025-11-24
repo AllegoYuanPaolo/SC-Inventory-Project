@@ -1,3 +1,4 @@
+$set sourceformat"free"
         IDENTIFICATION DIVISION.
         PROGRAM-ID. dispSafetyStock.
        
@@ -9,8 +10,7 @@
                        assign to "data/SafetyStocks.dat"
                        organization is indexed
                        access mode is dynamic
-                       record key is item-id
-                       alternate key is item
+                       record key is item
                        file status is safeStat.
                
 
@@ -20,14 +20,13 @@
 
            FD safetyStock.
                01 SafetyRec.
-                   02 item-id pic 9(3).
                    02 item pic x(25).
                    02 threshold pic 9(4).
                    02 UoM pic x(6).
 
            WORKING-STORAGE SECTION.
 
-           01 itemIDent pic 9(3).
+           01 itemCtr pic 99 value 1.
            01 safetyEOF pic x value "N".
            01 safeStat pic xx.
 
@@ -38,8 +37,6 @@
            
            display "Items: "
 
-           move 1 to item-id
-           start safetyStock key is not less than item-id
 
            perform until safetyEOF = "Y"
                read safetyStock next record
@@ -52,7 +49,8 @@
                    end-perform
                    display " "
                  
-                      display  item-id " | "item " | " threshold " " UoM
+                      display "| " itemCtr " | "item " | " threshold " " UoM
+                      add 1 to itemCtr
                 end-read
 
            end-perform.
