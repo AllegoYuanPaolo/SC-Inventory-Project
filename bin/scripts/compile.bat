@@ -32,7 +32,7 @@ if /i "%~1"=="-run" (
 :run
     pushd bin\programs
         echo ^> Running in new cmd
-        start cmd /c "%exe% & pause"
+        start cmd "%exe%" /c "%exe% & pause"
     popd
 goto end
 

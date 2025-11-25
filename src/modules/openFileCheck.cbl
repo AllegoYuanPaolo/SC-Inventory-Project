@@ -4,9 +4,8 @@
        data division.
        linkage section.
            01 fileStat pic XX.
-           01 fileName pic x(16).
 
-       procedure division using fileStat fileName.
+       procedure division using fileStat.
            
            if fileStat not = "00"
            display  "OPEN ERROR: " fileStat

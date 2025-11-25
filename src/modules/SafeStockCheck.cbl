@@ -7,17 +7,15 @@
                file-control.
                
                     select safetyStock
-                       assign to "data/SafetyStocks.dat"
+                       assign to "data\SafetyStocks.dat"
                        organization is indexed
                        access mode is dynamic
-                       record key is item-id
-                       alternate key is item
+                       record key is item
                        file status is safeStat.
         DATA DIVISION.
            FILE SECTION.
                 FD safetyStock.
                01 SafetyRec.
-                   02 item-id pic 9(3).
                    02 item pic x(25).
                    02 threshold pic 9(4).
                    02 UoM pic x(6).
@@ -39,7 +37,7 @@
            
 
            move itemName to item
-           
+
            open input safetyStock
                call "openFileCheck" using safeStat
 
@@ -51,15 +49,14 @@
                           compute stockDiff = threshold - itemStock
                           move stockDiff to formatDiff
                           move formatDiff to alpDiff
-             move function concatenate("Restock: ",function trim(alpDiff)," ", UoM) to restockStatus
+                          move function concatenate("Restock: ",function trim(alpDiff)," ", UoM) to restockStatus
                        else 
                            move "Okay" to restockStatus
                        end-if
-
                end-read
 
            close safetyStock
-        
+     
        goback.
  
 

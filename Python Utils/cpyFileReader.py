@@ -13,14 +13,14 @@ with open("Copybooks.md", 'w') as cpy:
     for file in files:
         content = []
         #print(f"\nReading in {file}:")
-    
+        cutPath =  file.split("\\")
         with open(file,'r') as current:
             for line in current:
                 cleanLine = line.strip("\n")
                 content.append(cleanLine)
             
-        
-            cpy.write(f"## {file}:\n")
+
+            cpy.write(f"## `{cutPath[2]}`\n")
             cpy.write("```cobol\n")    
             
             for i in content:
