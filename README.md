@@ -59,6 +59,8 @@
 
 - `dev.bat`
 	- temporarily adds `bin\scripts\` to the working directory's `PATH` to allow them being called from the project's root folder
+	- ***Must be ran every start of a session; every new `cmd` must run `dev` to gain access to the scripts in the `bin\scripts`***
+	- usage:
 	```shell
 	  dev
 	```
@@ -131,6 +133,6 @@
 
 ---
 # Project Map
-<img src="COBOL PROJECT Map.drawio.svg" alt="Project map" width="1000"/> 
+<img src="docs/COBOL PROJECT Map.drawio.svg" alt="Project map" width="1000"/> 
 
 ---

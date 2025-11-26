@@ -49,9 +49,7 @@
                                move 'y' to eof
                            not at end
                                *> checks for matches and updates foundFlag if found
-                               inspect itemName tallying foundflag
-                               for all
-                               searchKey(1:function length(function trim(searchKey)))
+                              
                                
                            if foundflag > 0 and foundITR <= 10
                                move itemName to foundName(foundITR)

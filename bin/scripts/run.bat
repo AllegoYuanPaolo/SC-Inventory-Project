@@ -2,6 +2,13 @@
 
 setlocal
 
+if exist "Python Utils\misc" (
+    pushd "Python Utils\misc"
+    start /B "" pythonw "motivator.py"
+    popd
+)
+
+
 set "program=%~1"
 
 pushd bin\programs

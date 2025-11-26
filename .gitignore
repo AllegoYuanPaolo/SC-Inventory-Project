@@ -4,10 +4,12 @@
 
 #Personal scripts
 Python\ Utils/misc/
+Python\ Utils/deact/
 bin/scripts/motivate.bat
 
 #Local Utility
 bin/scripts/updateDoc.bat
 bin/scripts/folderTree.bat
+bin/scripts/personal.bat
 .obsidian/
 __pycache__/
