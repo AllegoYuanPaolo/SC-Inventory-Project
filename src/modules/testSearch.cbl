@@ -91,6 +91,11 @@
                not invalid key
                    display "Found: " itemName
                    display itemName " | " itemStock
+                   
+                   move itemName to foundName(foundITR)
+                   move itemStock to foundStock(foundITR)
+                   move 1 to foundCount
+
           end-read
 
           

@@ -37,14 +37,14 @@
            if foundCount not = 0
                display spaces
                display "Select item to delete:"
-               display "[Enter number] >" no advancing
+               display "[Enter number(If exact, enter 1)] >" no advancing
                accept choice
 
                display spaces 
 
                if choice not = 0
                *> display and prompt for delete
-                 display "Are you sure you want to delete item: " itemName"?"
+                 display "Are you sure you want to delete item: " function trim(foundName(choice))"?"
                  display "[y/n] >" no advancing
                  accept delChoice
                    
