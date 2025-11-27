@@ -2,6 +2,13 @@
 # Code Documentation for the SC-Inventory COBOL Project
 
 ---
+
+For File Layouts: [Click here](docs/File%20Layouts.md) 
+
+For Copybooks: [Click here](docs/Copybooks.md) 
+
+
+---
 ## Requirements:
 - **GnuCOBOL 3.3 (This code uses SuperBOL)**
 	- necessary as some `.cbl` files use `$set sourceformat"free"`

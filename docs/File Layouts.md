@@ -18,9 +18,9 @@
 ---
 # `Requests.dat`
 
-| requestID | requestItems | requestor | dateRequested | timeRequested |
-| --------- | ------------ | --------- | ------------- | ------------- |
-| req001    |              |           |               |               |
-|           |              |           |               |               |
+| requestID | requestItems                                 | requestor            | dateRequested | timeRequested |
+| --------- | -------------------------------------------- | -------------------- | ------------- | ------------- |
+| req001    | valrose printed - 250<br>valrose plain - 125 | Packaging Department | 26/11/2025    | 15:18:17      |
+|           |                                              |                      |               |               |
 
 ---

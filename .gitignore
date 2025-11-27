@@ -1,6 +1,7 @@
 #Ignore the following files 
 
-
+#Sensitive info
+docs/img
 
 #Personal scripts
 Python\ Utils/misc/

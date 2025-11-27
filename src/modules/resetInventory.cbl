@@ -81,7 +81,8 @@ $set sourceformat"free"
            close masterList
            close Inventory
            display "============================"
-           call "viewrun viewInvenoInventory"
+
+           call "viewInventory"
 
         
        exit program.

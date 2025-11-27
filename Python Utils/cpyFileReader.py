@@ -2,18 +2,17 @@ import os
 
 
 files = []
-
-with os.scandir("src\\copyLib") as entries:
+with os.scandir("./src/copyLib/") as entries:
     for entry in entries:
         files.append(entry.path)
 
 
-with open("Copybooks.md", 'w') as cpy:
+with open("docs/Copybooks.md", 'w') as cpy:
     cpy.write("---\n # Copybooks (`.cpy`) from `src\\copylib`\n---\n")
     for file in files:
         content = []
         #print(f"\nReading in {file}:")
-        cutPath =  file.split("\\")
+        cutPath =  file.split("/")
         with open(file,'r') as current:
             for line in current:
                 cleanLine = line.strip("\n")
