@@ -3,9 +3,9 @@
 
 ---
 
-For File Layouts: [Click here](docs/File%20Layouts.md) 
+For File Layouts documentation: [Click here](docs/File%20Layouts.md) 
 
-For Copybooks: [Click here](docs/Copybooks.md) 
+For Copybooks documentation: [Click here](docs/Copybooks.md) 
 
 
 ---
