@@ -33,8 +33,12 @@ For Copybooks documentation: [Click here](docs/Copybooks.md)
 - `addStocks` 
 	- (Update);  used for restocking, updating the current stocks with new stocks
 	- uses `testSearch`, a modified version of the `searchRecord` code as a search module; returns it as a table
+- `testSearch`
+	- (Retrieve); a search algorithm that combines `INDEXED`'s search (`READ file KEY IS`) and linear search
+	- has a fallback linear search in case the search key provided does not have an exact match when searched via BTree search (`INDEXED`'s native search)
+	- supports partial key search and by extension, returns multiple results via a table (`foundName`, `foundStock`, `foundRestock`)
 - `searchRecord`
-	- (Retrieve); used for searching a specific item in the inventory; supports partial key search 
+	- (Retrieve); used for searching a specific item in the inventory; supports partial key search
 - `viewInventory`
 	- (Retrieve); used for viewing *all* of the inventory records
 	- calls on `SafetyStockCheck` to update `restockStatus` every time the inventory is viewed
@@ -50,6 +54,8 @@ For Copybooks documentation: [Click here](docs/Copybooks.md)
 		- b) `Okay`
 	- Uses `bin\programs\data\SafetyStocks.dat` and `bin\programs\data\SafetyStocks.dat.1` as reference
 		- These `INDEXED` files are made by `inputSafetyStock`
+- `deleteRecord`
+	- (Delete); searches for a specific record using `testSearch` module
 - `inputSafetyStock`
 	- uses uses `bin\programs\data\items.txt` as a CSV style .`txt` file to create a `SafeStock.dat` (an `INDEXED` organization file) as a reference for `SafetyStockCheck`
 ### Utility Modules

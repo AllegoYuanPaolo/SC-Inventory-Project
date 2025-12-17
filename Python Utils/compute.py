@@ -16,5 +16,3 @@ with open("bin/programs/data/items.txt", "r") as file:
 
 
 
-
-

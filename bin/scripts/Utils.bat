@@ -15,21 +15,20 @@ echo    ^> ["back" to exit]
         )
     )
 
-pushd ".\Python Utils"
+
 
     set /p "tool=Use: "
+    set "toolPath=Python Utils\%tool%"
         if /I "%tool%"=="back" (
             echo ^> Exiting program
             exit /b
         )
 
-        if not exist "%tool%.py"  (
+        if not exist "%toolPath%.py"  (
             echo    ^> Tool not found
             exit /b
         )
-    start /wait "Python Tools - %tool%" cmd /c "python %tool%.py & pause"
-
-popd
+    start /wait "Python Tools - %tool%" cmd /c "python "%toolPath%.py" & pause"
 
 
-endlocal
+

@@ -5,7 +5,6 @@
     "coboleditor.parse_copybooks_for_references": true,
     "coboleditor.copybookdirs": [
         "${workspaceFolder}/src/copylib"
-    ],
+    ]
 
-    "markdown-pdf.outputDirectory": "~/docs"
 }

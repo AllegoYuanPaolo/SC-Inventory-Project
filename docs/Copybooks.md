@@ -1,7 +1,7 @@
 ---
  # Copybooks (`.cpy`) from `src\copylib`
 ---
-## `copyLib`
+## `Inventory-rec.cpy`
 ```cobol
            fd Inventory. 
                   01 invRec.
@@ -12,7 +12,7 @@
                     02 restockStatus pic x(25).
                    
 ```
-## `copyLib`
+## `Inventory.cpy`
 ```cobol
                select Inventory
                        assign to "data/Inventory.dat"
