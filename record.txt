@@ -1,0 +1,5 @@
+Requestor: Mixing department
+Request date: 2025-12-18 | 05:31
+Items: 
+- Item: blue05 - 100
+- Item: yellow01 - 70
