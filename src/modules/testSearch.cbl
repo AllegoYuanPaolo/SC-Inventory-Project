@@ -24,7 +24,7 @@
                02 foundTable occurs 10 times.
                    03 foundName pic x(25).
                    03 foundStock pic Z,ZZ9.
-                   03 foundRestock pic x(25).      
+                    
             01 searchKey pic x(25).
 
         PROCEDURE DIVISION using searchKey foundRecord foundCount.

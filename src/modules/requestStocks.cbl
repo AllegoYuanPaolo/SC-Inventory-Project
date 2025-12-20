@@ -1,3 +1,4 @@
+$set sourceformat"free"
         IDENTIFICATION DIVISION.
         PROGRAM-ID. requestStocks.
  
@@ -24,6 +25,13 @@
                
                01 ctr pic 99 value 1.
 
+           01 foundRecord.
+               02 foundTable occurs 10 times.
+                   03 foundName pic x(25).
+                   03 foundStock pic z,zz9.
+           01 foundCount pic 9(2) value 0.
+           01 choice pic 99.
+
 
         PROCEDURE DIVISION.
            display "   Request Stocks"
@@ -38,8 +46,30 @@
                display "Items: " no advancing
                accept process-Item(ctr)
                
-               display "Quantity: " no advancing
-               accept process-Quantity(ctr)
+               call "testSearch" using process-Item(ctr) foundRecord foundCount
+               
+               if foundCount not = 0
+                   display spaces
+                   display "Confirm item to request:"
+                   display "[Enter number] >" no advancing
+                   accept choice
+
+                   display spaces
+
+                   if choice not = 0
+                       display "Item: " foundName(choice)
+                       move foundName(choice) to process-Item(ctr)
+                       display "Current Stock: " foundStock(choice)
+                       display spaces
+                       display "Quantity: " no advancing
+                       accept process-Quantity(ctr)
+
+                       *> TODO: call "subtractInventory" using process-Rec
+                       *> TODO: call "writeRequestRecord" using input-Rec
+                   end-if
+               end-if
+
+               
 
                add 1 to ctr
                
@@ -50,13 +80,7 @@
 
            end-perform
            
-           move 1 to ctr 
-           
-           perform until process-Item(ctr) = spaces
-               display "Item: " process-Item(ctr) 
-               " | Quantity: " process-Quantity(ctr)
-               add 1 to ctr
-           end-perform
+          
 
        
        STOP RUN.
