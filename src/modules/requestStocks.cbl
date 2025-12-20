@@ -2,30 +2,11 @@
         PROGRAM-ID. requestStocks.
  
        environment division.
-           input-output section.
-               file-control.
-                   select Requests
-                       assign to "data/Requests.dat"
-                       organization is indexed
-                       access mode is dynamic
-                       record key is requestID
-                       file status is ReqStat
-
-                   copy "Inventory".
 
         DATA DIVISION.
            FILE section.
-           copy "Inventory-rec".
-            fd Requests.
-                   01 Requests-rec.
-                       02 requestID pic 9(5).
-                       02 requestItem pic x(25).
-                       02 requestQuantity pic 9(4).
-                       02 requestor pic x(25)
-                       02 requestDate pic x(10).
-                       02 requestTime pic x(8).
 
-            WORKING-STORAGE SECTION.
+           WORKING-STORAGE SECTION.
                01 input-rec.
                    02 input-ID pic 9(5).
                    02 input-Item pic x(25).
@@ -33,8 +14,50 @@
                    02 input-Requestor pic x(25).
                    02 input-Date pic x(10).
                    02 input-Time pic x(8).
-                   
+               
+               01 addAnother pic x value 'y'.
+
+               01 process-Rec.
+                   02 process-table occurs 10 times.
+                       03 process-Item pic x(25).
+                       03 process-Quantity pic 9(4).
+               
+               01 ctr pic 99 value 1.
+
+
         PROCEDURE DIVISION.
+           display "   Request Stocks"
+           display spaces
            
+           display "Department: " no advancing
+           accept input-Requestor
+
+           perform with test after until addAnother = 'n'
+               call "SYSTEM" using "cls"
+
+               display "Items: " no advancing
+               accept process-Item(ctr)
+               
+               display "Quantity: " no advancing
+               accept process-Quantity(ctr)
+
+               add 1 to ctr
+               
+               display "Do you want to add more? [y/n] >" no advancing
+               accept addAnother
+
+               move function lower-case(addAnother) to addAnother
+
+           end-perform
+           
+           move 1 to ctr 
+           
+           perform until process-Item(ctr) = spaces
+               display "Item: " process-Item(ctr) 
+               " | Quantity: " process-Quantity(ctr)
+               add 1 to ctr
+           end-perform
+
+       
        STOP RUN.
  
