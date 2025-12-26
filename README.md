@@ -33,9 +33,10 @@ For Copybooks documentation: [Click here](docs/Copybooks.md)
 - `addStocks` 
 	- (Update);  used for restocking, updating the current stocks with new stocks
 	- uses `testSearch`, a modified version of the `searchRecord` code as a search module; returns it as a table
+	- Computes the restock amount in place
 - `testSearch`
 	- (Retrieve); a search algorithm that combines `INDEXED`'s search (`READ file KEY IS`) and linear search
-	- has a fallback linear search in case the search key provided does not have an exact match when searched via BTree search (`INDEXED`'s native search)
+	- has a fallback linear search in case the search key provided does not have an exact match when searched via index search
 	- supports partial key search and by extension, returns multiple results via a table (`foundName`, `foundStock`, `foundRestock`)
 - `searchRecord`
 	- (Retrieve); used for searching a specific item in the inventory; supports partial key search

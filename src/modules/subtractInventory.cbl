@@ -11,7 +11,7 @@ $set sourceformat"free"
            file section.
                copy "Inventory-rec".
             WORKING-STORAGE SECTION.
-           
+               01 ctr pic 99 value 1.
            linkage section.
                01 process-Rec.
                    02 process-table occurs 10 times.
@@ -19,17 +19,24 @@ $set sourceformat"free"
                        03 process-Quantity pic 9(4).
         PROCEDURE DIVISION using  process-Rec.
                open i-o Inventory
-                   move process-Item to itemName
-                   
-                   read Inventory key is itemName
-                       invalid key
-                           display "Item not found"
+ 
+                  perform until process-Item(ctr) = spaces
+ 
+                       move process-Item(ctr) to itemName
                        
-                       not invalid key
-                           compute itemStock = itemStock - process-Quantity
+                       read Inventory key is itemName
+                           invalid key
+                               display "Item not found"
                            
-                           rewrite invRec
-                   end-read
+                           not invalid key
+                               compute itemStock = itemStock - process-Quantity(ctr)
+                               
+                               rewrite invRec
+                               add 1 to ctr
+                       end-read
+ 
+                   end-perform
+ 
                close Inventory
        exit program.
  

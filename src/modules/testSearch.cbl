@@ -48,9 +48,9 @@
                            at end
                                move 'y' to eof
                            not at end
-                               *> checks for matches and updates foundFlag if found
-                              
                                
+                           
+                           *> checks for matches and updates foundFlag if found                               
                            if foundflag > 0 and foundITR <= 10
                                move itemName to foundName(foundITR)
                                move itemStock to foundStock(foundITR)

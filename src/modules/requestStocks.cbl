@@ -9,12 +9,14 @@ $set sourceformat"free"
 
            WORKING-STORAGE SECTION.
                01 input-rec.
-                   02 input-ID pic 9(5).
-                   02 input-Item pic x(25).
-                   02 input-Quantity pic 9(4).
-                   02 input-Requestor pic x(25).
-                   02 input-Date pic x(10).
-                   02 input-Time pic x(8).
+                   02 input-Table occurs 10 times.
+                       03 input-ID pic 9(5).
+                       03 input-ItemTable occurs 10 times.
+                           04 input-Item pic x(25).
+                           04 input-Quantity pic 9(4).
+                       03 input-Requestor pic x(25).
+                       03 input-Date pic x(10).
+                       03 input-Time pic x(8).
                
                01 addAnother pic x value 'y'.
 
@@ -24,14 +26,15 @@ $set sourceformat"free"
                        03 process-Quantity pic 9(4).
                
                01 ctr pic 99 value 1.
-
-           01 foundRecord.
-               02 foundTable occurs 10 times.
-                   03 foundName pic x(25).
-                   03 foundStock pic z,zz9.
-           01 foundCount pic 9(2) value 0.
-           01 choice pic 99.
-
+           
+               *> Table for test search
+               01 foundRecord.
+                   02 foundTable occurs 10 times.
+                       03 foundName pic x(25).
+                       03 foundStock pic z,zz9.
+               01 foundCount pic 9(2) value 0.
+               01 choice pic 99.
+        
 
         PROCEDURE DIVISION.
            display "   Request Stocks"
@@ -64,8 +67,10 @@ $set sourceformat"free"
                        display "Quantity: " no advancing
                        accept process-Quantity(ctr)
 
-                       *> TODO: call "subtractInventory" using process-Rec
-                       *> TODO: call "writeRequestRecord" using input-Rec
+                       move process-Item(ctr) to input-Item(ctr)
+                       move process-Quantity(ctr) to input-Quantity(ctr)
+
+
                    end-if
                end-if
 
@@ -79,6 +84,8 @@ $set sourceformat"free"
                move function lower-case(addAnother) to addAnother
 
            end-perform
+               *> TODO: call "subtractInventory" using process-Rec
+               *> TODO: call "writeRequestRecord" using input-Rec
            
           
 
