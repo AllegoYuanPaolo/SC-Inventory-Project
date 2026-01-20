@@ -48,7 +48,7 @@
                    display "Restock Amount: " no advancing
                    accept RestockAmount
                    
-                   *> Open the file to allow rewrite
+                   *> Open the as I-O file to allow rewrite
                    open i-o Inventory
                    move foundName(choice) to itemName
                        read Inventory key is itemName

@@ -1,6 +1,6 @@
 $set sourceformat"free"
         IDENTIFICATION DIVISION.
-        PROGRAM-ID. getRequestID.
+        PROGRAM-ID. dispRequestID.
 
         environment division.
            input-output section.
@@ -18,10 +18,9 @@ $set sourceformat"free"
             WORKING-STORAGE SECTION.
              01 IDslot pic 9 value 1. *> Constant: always only read from 1
 
-           linkage section.
-           01 currentID pic 9(5). *> return the value (ID number to the calling function)
-        
-        PROCEDURE DIVISION using currentID.
+           
+      
+        PROCEDURE DIVISION.
            open input requestID
                
                read requestID key is IDslot
@@ -29,7 +28,7 @@ $set sourceformat"free"
                        display "Missing record"
                    
                    not invalid key
-                       move reqID to currentID
+                       display "Current ID: " reqID
                end-read
 
            close requestID

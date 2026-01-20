@@ -5,9 +5,7 @@ $set sourceformat"free"
        environment division.
 
         DATA DIVISION.
-           FILE section.
-
-           WORKING-STORAGE SECTION.
+           LOCAL-STORAGE SECTION.
                01 input-rec.
                    02 input-Table occurs 10 times.
                        03 input-ID pic 9(5).
@@ -18,75 +16,128 @@ $set sourceformat"free"
                        03 input-Date pic x(10).
                        03 input-Time pic x(8).
                
-               01 addAnother pic x value 'y'.
+               01 addAnotherItem pic x.
+               01 addAnotherReq pic x.
 
                01 process-Rec.
                    02 process-table occurs 10 times.
-                       03 process-Item pic x(25).
-                       03 process-Quantity pic 9(4).
+                       03 process-ItemTable occurs 10 times.
+                           04 process-Item pic x(25).
+                           04 process-Quantity pic 9(4).
                
-               01 ctr pic 99 value 1.
+               01 requestCtr pic 99 value 1. *> counter for traversing the requests
+               01 itemCtr pic 99 value 1. *> counter to traversing each items in the requests
            
-               *> Table for test search
-               01 foundRecord.
+               
+               01 foundRecord. *> Table for test search
                    02 foundTable occurs 10 times.
                        03 foundName pic x(25).
                        03 foundStock pic z,zz9.
                01 foundCount pic 9(2) value 0.
-               01 choice pic 99.
+               01 choice pic 99. *> input to choose which found item
         
+              
+               01 outOfStock.  *> Array to store the items that has low or out of stock
+                   02 requestStock-Table occurs 10 times. *> 10 requests
+                       03 lowStock-Table occurs 10 times. *> 10 items inside the request
+                           04 low-Item pic x(25).
+                           04 low-StockCount pic x(4).
+               
+               01 outOfStockCtr pic 99 value 1. *> counter to traverse out of stock table
 
         PROCEDURE DIVISION.
-           display "   Request Stocks"
-           display spaces
-           
-           display "Department: " no advancing
-           accept input-Requestor
-
-           perform with test after until addAnother = 'n'
-               call "SYSTEM" using "cls"
-
-               display "Items: " no advancing
-               accept process-Item(ctr)
+           perform with test after varying requestCtr from 1 by 1 until requestCtr > 10 or addAnotherReq = 'n'
+               display "   Request Stocks"
+               display spaces
                
-               call "testSearch" using process-Item(ctr) foundRecord foundCount
-               
-               if foundCount not = 0
-                   display spaces
-                   display "Confirm item to request:"
-                   display "[Enter number] >" no advancing
-                   accept choice
+               display "Department: " no advancing
+               accept input-Requestor(requestCtr)
+    
+               perform with test after varying itemCtr from 1 by 1 until itemCtr > 10 or  addAnotherItem = 'n' 
+                   call "SYSTEM" using "cls"
+    
+                   call "getRequestID" using input-ID(requestCtr)
+                   call "getDate" using input-Time(requestCtr), input-Date(requestCtr)       
 
-                   display spaces
+                   display "Items: " no advancing
+                   accept process-Item(requestCtr itemCtr)
+                   
 
-                   if choice not = 0
-                       display "Item: " foundName(choice)
-                       move foundName(choice) to process-Item(ctr)
-                       display "Current Stock: " foundStock(choice)
+                   call "testSearch" using process-Item(requestCtr itemCtr) foundRecord foundCount
+                   
+                   if foundCount not = 0
                        display spaces
-                       display "Quantity: " no advancing
-                       accept process-Quantity(ctr)
+                       *> Prompt user to choose from the full namees
+                       display "Confirm item to request:"
+                       display "[Enter number] >" no advancing
+                       accept choice
+    
+                       display spaces
+    
+                       if choice not = 0
+                       
+                       *> Display selected item for clarity
+                           display "Item: " foundName(choice)
+                           move foundName(choice) to process-Item(requestCtr itemCtr)
+                           display "Current Stock: " foundStock(choice)
+                           display spaces
+                           
+                       *> Input request amount
+                           display "Quantity: " no advancing
+                           accept process-Quantity(requestCtr itemCtr)
+                       
+                       *> Move the values into the table
+                           move process-Item(requestCtr itemCtr) to input-Item(requestCtr itemCtr)
+                           move process-Quantity(requestCtr itemCtr) to input-Quantity(requestCtr itemCtr)
+                           
+                           *> Traverse the table
+                           if itemCtr > 10
+                               move 1 to itemCtr
+                           end-if
+                           
+                           *> Prompt the user if they want to add more items
+                           display "Do you want to add more items? [y/n] >" no advancing
+                           accept addAnotherItem
+            
+                           move function trim(function lower-case(addAnotherItem)) to addAnotherItem
 
-                       move process-Item(ctr) to input-Item(ctr)
-                       move process-Quantity(ctr) to input-Quantity(ctr)
-
-
+                           
+                       end-if
+    
                    end-if
-               end-if
-
+    
+                   
+    
+               end-perform
                
+               *> Prompt user if they want to add more requests
+               display "Do you want make another request? [y/n] >" no advancing
+               accept addAnotherReq
 
-               add 1 to ctr
-               
-               display "Do you want to add more? [y/n] >" no advancing
-               accept addAnother
+               move function trim(function lower-case(addAnotherReq)) to addAnotherReq
 
-               move function lower-case(addAnother) to addAnother
 
            end-perform
-               *> TODO: call "subtractInventory" using process-Rec
-               *> TODO: call "writeRequestRecord" using input-Rec
-           
+               
+
+               *> Display the current input
+               perform varying requestCtr from 1 by 1 until requestCtr > 10
+                   if input-ID(requestCtr) not = 0
+                       display "Request ID: " input-ID(requestCtr)
+                       display "Requestor: " input-Requestor(requestCtr)
+                       display "Date and time requested: " input-Date(requestCtr) " | " input-Time(requestCtr)
+                       display "Items Requested: "
+                       perform varying itemCtr from 1 by 1 until itemCtr > 10 
+                           if input-Item(requestCtr itemCtr) not = space 
+                               display input-Item(requestCtr itemCtr) " | " input-Quantity(requestCtr itemCtr)
+                           end-if
+                       end-perform
+                   end-if
+               end-perform
+               
+               *> Process the input tables 
+               call "writeRequestRecord" using input-Rec
+               call "subtractInventory" using process-Rec outOfStock
           
 
        

@@ -17,12 +17,14 @@
 
 
         PROCEDURE DIVISION.
-           display "Resetting reqeusts records. . ."     
+           display "Resetting Reqeusts records and requestIDs. . ."     
            
            open output Requests
            close Requests
-    
-           display "Requests records reset!"
+               
+           call "resetRequestID"
+           display "Requests records requestIDs reset!"
+
         
        STOP RUN.
  

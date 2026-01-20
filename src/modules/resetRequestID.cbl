@@ -12,7 +12,7 @@
         DATA DIVISION.
            file section.
                fd requestID.
-                   01 reqID pic 9(4).
+                   01 reqID pic 9(5).
 
             WORKING-STORAGE SECTION.
                01 counter pic 9 value 1.

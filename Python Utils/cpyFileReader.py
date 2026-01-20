@@ -13,7 +13,7 @@ with open("docs/Copybooks.md", 'w') as cpy:
         content = []
         #print(f"\nReading in {file}:")
         cutPath =  file.split("/")
-        print(cutPath)
+        #print(cutPath)
         with open(file,'r') as current:
             for line in current:
                 cleanLine = line.strip("\n")

@@ -86,7 +86,7 @@
                                WS-unitOfMeasure
                                WS-materialType
 
-                          display "DEBUG| Fields:  "fields
+                          display "DEBUG| Fields:  " fields
 
                           
                   

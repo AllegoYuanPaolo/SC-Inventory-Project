@@ -36,7 +36,8 @@
           call "openFileCheck" using InvStat
 
           read Inventory key is itemName
-               *> Starts linear search if only partial key
+               
+               *> If the key is not an exact match, it tries to do linear search
                invalid key
                    *> initialize the flags
                    move 'n' to eof
@@ -72,7 +73,7 @@
                    end-if
 
 
-                   *> Display results
+                   *> Display the found results
                    *> Reset foundITR to traverse
                    move 1 to foundITR
                    perform until foundITR > foundCount

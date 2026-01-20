@@ -28,12 +28,16 @@
             01 searchKey pic x(25).
 
         PROCEDURE DIVISION using searchKey foundRecord foundCount.
-       
+       *> Module to search to search and return items:
+       *> Allows for name validation so it passes the correct and full
+       *> name of the item so it can be index searched
+
+
        *> set the searchKey to the key (itemName)
         move searchKey to itemName
         
-        open i-o Inventory
-          call "openFileCheck" using InvStat
+        open input Inventory
+           *>call "openFileCheck" using InvStat
 
           read Inventory key is itemName
                *> Starts linear search if only partial key
@@ -48,15 +52,18 @@
                            at end
                                move 'y' to eof
                            not at end
-                               
-                           
-                           *> checks for matches and updates foundFlag if found                               
-                           if foundflag > 0 and foundITR <= 10
-                               move itemName to foundName(foundITR)
-                               move itemStock to foundStock(foundITR)
-                               
-                               add 1 to foundITR 
-                               add 1 to foundCount
+                                *> checks for matches and updates foundFlag if found
+                                inspect itemName tallying foundflag
+                                for all
+                                searchKey(1:function length(function trim(searchKey)))
+     
+                                *> checks for matches and updates foundFlag if found                               
+                                if foundflag > 0 and foundITR <= 10
+                                    move itemName to foundName(foundITR)
+                                    move itemStock to foundStock(foundITR)
+                                    
+                                    add 1 to foundITR 
+                                    add 1 to foundCount
                            end-if
                    end-perform
                    
@@ -77,6 +84,7 @@
                            display "Result " foundITR " | "
                                    foundName(foundITR) " | "
                                    foundStock(foundITR) " | "
+                           
                            *>add 1 to foundCount
                            add 1 to foundITR *> traverse table
                        else

@@ -6,13 +6,13 @@
                    select requestID
                        assign to "data/requestID.dat"
                        organization is relative
-                       relative key is counter
+                       relative key is counter.
         DATA DIVISION.
            file section.
                fd requestID.
-                   01 reqID pic 9(4).
+                   01 reqID pic 9(5).
             WORKING-STORAGE SECTION.
-            01 counter pic x value 1.
+            01 counter pic 9 value 1.
         
         PROCEDURE DIVISION.
 
@@ -26,5 +26,5 @@
                end-read
            close requestID
         
-       STOP RUN.
+       exit program.
  
