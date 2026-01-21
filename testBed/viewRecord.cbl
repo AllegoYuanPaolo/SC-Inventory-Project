@@ -21,7 +21,7 @@
                02 MSStock pic 9(2).
                02 dateReceived pic x(10).
                02 timeReceived pic x(8).
-          working-storage section.
+          local-storage section.
                
                01 eof pic x value "N".
 

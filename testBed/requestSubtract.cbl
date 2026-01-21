@@ -21,7 +21,7 @@
                02 MSName pic x(20).
                02 MSStock pic 9(2).
 
-       working-storage section.
+       local-storage section.
            01 recordStat pic xx.
            01 eof pic x value "N".
            

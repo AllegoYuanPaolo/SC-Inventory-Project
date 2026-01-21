@@ -11,7 +11,7 @@
         DATA DIVISION.
             file section.
                copy "Inventory-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
            01 Invstat pic xx.
            01 searchKey pic x(25).
            01 RestockAmount pic 9(4).
@@ -25,7 +25,10 @@
 
            01 foundCount pic 9(2) value 0.
 
+           01 addAnother pic x.
+
         PROCEDURE DIVISION.
+           perform with test after until 
            display "Enter Item name to restock: " no advancing
            accept searchKey
 

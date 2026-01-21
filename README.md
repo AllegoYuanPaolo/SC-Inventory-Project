@@ -72,7 +72,7 @@ For Copybooks documentation: [Click here](docs/Copybooks.md)
 ## Utility Scripts
 
 - `dev.bat`
-	- temporarily adds `bin\scripts\` to the working directory's `PATH` to allow them being called from the project's root folder
+	- temporarily adds `bin\scripts\` to the local directory's `PATH` to allow them being called from the project's root folder
 	- ***Must be ran every start of a session; every new `cmd` must run `dev` to gain access to the scripts in the `bin\scripts`***
 	- usage:
 	```shell

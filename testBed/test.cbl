@@ -21,7 +21,7 @@
                02 dateReceived pic x(10).
                02 timeReceived pic x(8).
 
-           WORKING-STORAGE SECTION.
+           local-STORAGE SECTION.
            01 recordStat pic xx.
            01
                
@@ -39,5 +39,5 @@
             read recordFile key is MSName
             close recordFile
 
-       STOP RUN.
+       exit program.
         

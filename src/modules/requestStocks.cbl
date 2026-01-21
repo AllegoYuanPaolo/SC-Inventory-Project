@@ -36,15 +36,7 @@ $set sourceformat"free"
                01 foundCount pic 9(2) value 0.
                01 choice pic 99. *> input to choose which found item
         
-              
-               01 outOfStock.  *> Array to store the items that has low or out of stock
-                   02 requestStock-Table occurs 10 times. *> 10 requests
-                       03 lowStock-Table occurs 10 times. *> 10 items inside the request
-                           04 low-Item pic x(25).
-                           04 low-StockCount pic x(4).
-               
-               01 outOfStockCtr pic 99 value 1. *> counter to traverse out of stock table
-
+             
         PROCEDURE DIVISION.
            perform with test after varying requestCtr from 1 by 1 until requestCtr > 10 or addAnotherReq = 'n'
                display "   Request Stocks"
@@ -52,22 +44,29 @@ $set sourceformat"free"
                
                display "Department: " no advancing
                accept input-Requestor(requestCtr)
+               
+               call "getRequestID" using input-ID(requestCtr)
+               call "getDate" using input-Time(requestCtr), input-Date(requestCtr)       
     
                perform with test after varying itemCtr from 1 by 1 until itemCtr > 10 or  addAnotherItem = 'n' 
                    call "SYSTEM" using "cls"
-    
-                   call "getRequestID" using input-ID(requestCtr)
-                   call "getDate" using input-Time(requestCtr), input-Date(requestCtr)       
-
-                   display "Items: " no advancing
+                   move spaces to foundRecord
+                   move zero to foundCount
+                   
+                   display "Enter item name to search: " no advancing
                    accept process-Item(requestCtr itemCtr)
+
+                   if function trim(process-Item(requestCtr itemCtr)) = spaces
+                       display "Input cannot be blank!"
+                       continue
+                   end-if
                    
 
                    call "testSearch" using process-Item(requestCtr itemCtr) foundRecord foundCount
                    
                    if foundCount not = 0
                        display spaces
-                       *> Prompt user to choose from the full namees
+                       *> Prompt user to choose from the full names
                        display "Confirm item to request:"
                        display "[Enter number] >" no advancing
                        accept choice
@@ -75,7 +74,6 @@ $set sourceformat"free"
                        display spaces
     
                        if choice not = 0
-                       
                        *> Display selected item for clarity
                            display "Item: " foundName(choice)
                            move foundName(choice) to process-Item(requestCtr itemCtr)
@@ -83,14 +81,14 @@ $set sourceformat"free"
                            display spaces
                            
                        *> Input request amount
-                           display "Quantity: " no advancing
+                           display "Quantity to request: " no advancing
                            accept process-Quantity(requestCtr itemCtr)
                        
-                       *> Move the values into the table
+                       *> Copy the values from process table into input table
                            move process-Item(requestCtr itemCtr) to input-Item(requestCtr itemCtr)
                            move process-Quantity(requestCtr itemCtr) to input-Quantity(requestCtr itemCtr)
                            
-                           *> Traverse the table
+                           *> reset the item Counter
                            if itemCtr > 10
                                move 1 to itemCtr
                            end-if
@@ -100,7 +98,11 @@ $set sourceformat"free"
                            accept addAnotherItem
             
                            move function trim(function lower-case(addAnotherItem)) to addAnotherItem
-
+                           if addAnotherItem = space
+                                display "Choice cannot be empty! Continuing..."
+                                display "Press any key to continue"
+                                accept omitted
+                           end-if
                            
                        end-if
     
@@ -115,6 +117,11 @@ $set sourceformat"free"
                accept addAnotherReq
 
                move function trim(function lower-case(addAnotherReq)) to addAnotherReq
+               if addAnotherReq = spaces
+                   display "Choice cannot be empty! Continuing..."
+                   display "Press any key to continue"
+                   accept omitted
+               end-if
 
 
            end-perform
@@ -135,11 +142,10 @@ $set sourceformat"free"
                    end-if
                end-perform
                
-               *> Process the input tables 
+               *> Process the input records 
                call "writeRequestRecord" using input-Rec
-               call "subtractInventory" using process-Rec outOfStock
+               call "subtractInventory" using process-Rec
           
 
        
-       STOP RUN.
- 
+       exit program.

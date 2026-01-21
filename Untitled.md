@@ -1,3 +1,61 @@
+```cobol
+$set sourceformat"free"
+        IDENTIFICATION DIVISION.
+        PROGRAM-ID. mainMenu.
+ 
+        DATA DIVISION.
+            local-STORAGE SECTION.
+           01 choice pic xx.
+        PROCEDURE DIVISION.
+        
+           perform with test after until exit
+                call 'SYSTEM' using 'cls'
+                display "       Sugar Crafts Inventory Management System"
+                display "[1] - Restock Items"
+                display "[2] - View Inventory"
+                display "[3] - Search Item"
+                display "[4] - Withdraw Stock"
+                display "[5] - View Requests"
+     
+                display "[00] - Exit Program"
+                display " >" no advancing
+                accept  choice
+                
+                evaluate choice
+                    when 00
+                        exit perform 
+                    when 1
+                        call 'SYSTEM' using 'cls'
+                        call "addStocks"
+                        CALL 'SYSTEM' USING 'pause'
+                    when 2
+                        call "viewInventory"
+                    when 3
+                        call "searchRecords"
+                    when 4
+                        call "requestStocks"
+                    when 5
+                        call "viewRequests"
+                    when other
+                        display "Enter valid choices!"
+                        display "Press any key to continue"
+                        accept omitted
+                       continue
+                end-evaluate
+                
+     
+
+
+           end-perform
+
+
+       exit program.
+ 
+```
+
+
+
+```cobol
 $set sourceformat"free"
         IDENTIFICATION DIVISION.
         PROGRAM-ID. requestStocks.
@@ -36,7 +94,15 @@ $set sourceformat"free"
                01 foundCount pic 9(2) value 0.
                01 choice pic 99. *> input to choose which found item
         
-             
+              
+               01 outOfStock.  *> Array to store the items that has low or out of stock
+                   02 requestStock-Table occurs 10 times. *> 10 requests
+                       03 lowStock-Table occurs 10 times. *> 10 items inside the request
+                           04 low-Item pic x(25).
+                           04 low-StockCount pic x(4).
+               
+               01 outOfStockCtr pic 99 value 1. *> counter to traverse out of stock table
+
         PROCEDURE DIVISION.
            perform with test after varying requestCtr from 1 by 1 until requestCtr > 10 or addAnotherReq = 'n'
                display "   Request Stocks"
@@ -50,9 +116,8 @@ $set sourceformat"free"
     
                perform with test after varying itemCtr from 1 by 1 until itemCtr > 10 or  addAnotherItem = 'n' 
                    call "SYSTEM" using "cls"
-                   move spaces to foundRecord
-                   move zero to foundCount
-                   
+    
+
                    display "Enter item name to search: " no advancing
                    accept process-Item(requestCtr itemCtr)
 
@@ -144,121 +209,10 @@ $set sourceformat"free"
                
                *> Process the input records 
                call "writeRequestRecord" using input-Rec
-               call "subtractInventory" using process-Rec
+               call "subtractInventory" using process-Rec outOfStock
           
 
        
        exit program.
-
-
-
-               $set sourceformat"free"
-        IDENTIFICATION DIVISION.
-        PROGRAM-ID. testSearch.
-       environment division.
-           input-output section.
-               file-control.
-                  copy "Inventory".
-
-        DATA DIVISION.
-           file section.
-               copy "Inventory-rec".
-            local-STORAGE SECTION.
-            01 InvStat pic xx.
-
-            01 foundflag pic 9 value 0.
-            01 eof pic x value 'n'.
-
-           01 foundITR pic 9(2) value 1.
-       
-           LINKAGE SECTION.
-           01 foundCount pic 9(2).
-
-              01 foundRecord. 
-               02 foundTable occurs 10 times.
-                   03 foundName pic x(25).
-                   03 foundStock pic Z,ZZ9.
-                    
-            01 searchKey pic x(25).
-
-        PROCEDURE DIVISION using searchKey foundRecord foundCount.
-       *> Module to search to search and return items:
-       *> Allows for name validation so it passes the correct and full
-       *> name of the item so it can be index searched
-
-
-       *> set the searchKey to the key (itemName)
-        move searchKey to itemName
-        
-        open input Inventory
-           *>call "openFileCheck" using InvStat
-
-          read Inventory key is itemName
-               *> Starts linear search if only partial key
-               invalid key
-                   *> initialize the flags
-                   move 'n' to eof
-                   move 0 to foundflag
-                   
-                   perform  until eof = 'y'
-                       move 0 to foundflag *> Resets foundFlag every iteration
-                       read Inventory next record
-                           at end
-                               move 'y' to eof
-                           not at end
-                                *> checks for matches and updates foundFlag if found
-                                inspect itemName tallying foundflag
-                                for all
-                                searchKey(1:function length(function trim(searchKey)))
-     
-                                *> checks for matches and updates foundFlag if found                               
-                                if foundflag > 0 and foundITR <= 10
-                                    move itemName to foundName(foundITR)
-                                    move itemStock to foundStock(foundITR)
-                                    
-                                    add 1 to foundITR 
-                                    add 1 to foundCount
-                           end-if
-                   end-perform
-                   
-                   *> Display how many results found
-                   if foundCount = 0
-                       display "No records found matching: " searchKey
-                   else
-                       display "Results found: " foundCount
-                       display "=================="
-                   end-if
-
-
-                   *> Display results
-                   *> Reset foundITR to traverse
-                   move 1 to foundITR
-                   perform until foundITR > foundCount
-                       if foundName(foundITR) not = spaces
-                           display "Result " foundITR " | "
-                                   foundName(foundITR) " | "
-                                   foundStock(foundITR) " | "
-                           
-                           *>add 1 to foundCount
-                           add 1 to foundITR *> traverse table
-                       else
-                           exit perform 
-                       end-if
-                   end-perform
-                       
-
-               *> Found by index search
-               not invalid key
-                   display "Found: " itemName
-                   display itemName " | " itemStock
-                   
-                   move itemName to foundName(foundITR)
-                   move itemStock to foundStock(foundITR)
-                   move 1 to foundCount
-
-          end-read
-
-          
-        close Inventory
-        
-       exit program.
+ 
+```

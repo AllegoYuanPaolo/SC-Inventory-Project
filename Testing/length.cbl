@@ -15,7 +15,7 @@ $set sourceformat"free"
               FD itemFile.
                01 currline pic x(55).
 
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
             01 itemStat pic xx.
             01 eofFlag pic x value "n".
             01 rec-len pic 9(4) comp.
@@ -91,5 +91,5 @@ $set sourceformat"free"
            display "Longest string length for Unit of Measure: " longestUnitOfMeasure
            display "Longest string length for Material Type: " longestMaterialType
         
-       STOP RUN.
+       exit program.
  

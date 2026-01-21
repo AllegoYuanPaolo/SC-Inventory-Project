@@ -2,7 +2,7 @@
         PROGRAM-ID. writeFileCheck.
  
         DATA DIVISION.
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
 
             linkage section.
             01 fileStatus pic xx.

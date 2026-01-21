@@ -22,7 +22,7 @@
        			02 timeRequested PIC X(8).
 
 
-           working-storage section.
+           local-storage section.
                01 reqFileStat pic xx.
 
                01 in-Record.

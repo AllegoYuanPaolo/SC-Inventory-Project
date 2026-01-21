@@ -4,7 +4,7 @@
        environment division.
 
        data division.
-           working-storage section.
+           local-storage section.
                01 choice pic 9.
        procedure division.
        
@@ -30,4 +30,4 @@
                    exit program.
            end-evaluate
 
-       stop run.
+       exit program.

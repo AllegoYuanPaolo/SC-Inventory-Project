@@ -10,7 +10,7 @@
         DATA DIVISION.
            file section.
                copy "inventory-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
            01 InvStat pic xx. 
 
             01 foundRecord. 

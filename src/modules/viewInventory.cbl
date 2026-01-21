@@ -11,18 +11,16 @@
            file section.
                copy "Inventory-rec.cpy".
                    
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
             01 eof pic x value "n".
             01 ctr pic 99 value 1.
             01 dispStock pic z,zz9.
 
-            local-storage section.
-            01 InvStat pic xx. 
 
         
         PROCEDURE DIVISION.
            open i-o Inventory
-               call "openFileCheck" using InvStat
+              
            
                perform until eof = "y"
                    read Inventory next record

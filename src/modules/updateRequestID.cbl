@@ -11,7 +11,7 @@
            file section.
                fd requestID.
                    01 reqID pic 9(5).
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
             01 counter pic 9 value 1.
         
         PROCEDURE DIVISION.

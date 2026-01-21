@@ -4,7 +4,7 @@
        environment division.
        
        data division.
-           working-storage section.
+           local-storage section.
            
            01 date-time.
                02 year pic 9(4).

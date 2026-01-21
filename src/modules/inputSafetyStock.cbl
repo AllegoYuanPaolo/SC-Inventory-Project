@@ -30,7 +30,7 @@
                    02 threshold pic 9(4).
                    02 UoM pic x(6).
 
-           WORKING-STORAGE SECTION.
+           local-STORAGE SECTION.
            
            01 fields.
                02 WS-item pic x(25).
@@ -62,12 +62,12 @@
 
                if fileStat not = "00"
                    call "openFileCheck" using fileStat, safeStock
-                   stop run
+                   exit program
                end-if.
 
                if safeStat not = "00"
                    call "openFileCheck" using , safetyStock
-                   stop run
+                   exit program
                end-if.
 
              perform until eofFlag = "Y"
@@ -109,5 +109,5 @@
            close safeStock    
            close safetyStock
 
-       STOP RUN.
+       exit program.
  

@@ -4,7 +4,7 @@
        environment division.
 
        data division.
-           working-storage section.
+           local-storage section.
             01 dispCount pic Z9.
        procedure division.
 
@@ -12,5 +12,5 @@
 
            display "Current RRN: " dispCount
 
-       stop runc
+       exit programc
        

@@ -9,7 +9,7 @@
         DATA DIVISION.
            file section.
                copy "Inventory-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
             01 InvStat pic xx.
 
             01 foundflag pic 9 value 0.

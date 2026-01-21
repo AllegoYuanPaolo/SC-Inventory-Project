@@ -19,7 +19,7 @@ $set sourceformat"free"
                    01 currLine pic x(55).
                 
               copy "Inventory-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
            
            01  masterListRecord.
                02 WS-item pic x(25).

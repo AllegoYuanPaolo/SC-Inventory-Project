@@ -10,7 +10,7 @@ $set sourceformat"free"
         DATA DIVISION.
            file section.
                copy "Request-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
                01 requestCtr pic 99 value 1.
                01 itemCtr pic 99 value 1.
            linkage section.
@@ -53,15 +53,15 @@ $set sourceformat"free"
                       
                       
                       *> display for debugging
-                      display spaces
-                       display "Requestor: " requestor
-                       display "Date and time requested: " requestDate " | " requestTime
-                       display "Items Requested: "
-                       perform varying itemCtr from 1 by 1 until itemCtr > 10 
-                           if function trim(requestItem(itemCtr)) not = 'none'
-                               display requestItem(itemCtr) " | " requestQuantity(itemCtr)
-                           end-if
-                       end-perform
+                      *>display spaces
+                      *> display "Requestor: " requestor
+                      *> display "Date and time requested: " requestDate " | " requestTime
+                      *> display "Items Requested: "
+                      *> perform varying itemCtr from 1 by 1 until itemCtr > 10 
+                      *>     if function trim(requestItem(itemCtr)) not = 'none'
+                      *>         display requestItem(itemCtr) " | " requestQuantity(itemCtr)
+                      *>     end-if
+                      *> end-perform
                        *> --- end debug ---
 
                        

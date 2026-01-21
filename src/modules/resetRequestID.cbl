@@ -14,12 +14,12 @@
                fd requestID.
                    01 reqID pic 9(5).
 
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
                01 counter pic 9 value 1.
         PROCEDURE DIVISION.
            open output requestID
                move 1 to reqID
                write reqID               
            close requestID
-       STOP RUN.
+       exit program.
  

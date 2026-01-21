@@ -24,7 +24,7 @@ $set sourceformat"free"
                    02 threshold pic 9(4).
                    02 UoM pic x(6).
 
-           WORKING-STORAGE SECTION.
+           local-STORAGE SECTION.
 
            01 itemCtr pic 99 value 1.
            01 safetyEOF pic x value "N".
@@ -57,5 +57,5 @@ $set sourceformat"free"
            
 
            close safetyStock
-       STOP RUN.
+       exit program.
  

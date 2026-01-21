@@ -31,7 +31,7 @@
                when other
                        display "Unhandled File Status"
            end-evaluate
-           stop run
+           exit program
            end-if.
                 
        exit program.

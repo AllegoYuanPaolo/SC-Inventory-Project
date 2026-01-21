@@ -16,7 +16,7 @@
 
            FD RRNCounter.
                01 RRNFile pic 9(2).
-           working-storage section.
+           local-storage section.
            
            01 counterStat pic xx.
            01 Rkey pic 9 value 1.

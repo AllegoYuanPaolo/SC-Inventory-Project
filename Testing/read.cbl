@@ -17,7 +17,7 @@
 
                01 currLine pic x(55).
 
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
            
        
             01 itemStat pic xx .
@@ -42,5 +42,5 @@
            end-perform
            close itemFile
            display "DEBUG| Lines: " counter
-       STOP RUN.
+       exit program.
  

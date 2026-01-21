@@ -12,7 +12,7 @@
              copy "Request-rec".
                    
 
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
                
 
 
@@ -26,5 +26,5 @@
            display "Requests records requestIDs reset!"
 
         
-       STOP RUN.
+       exit program.
  

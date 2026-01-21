@@ -10,14 +10,12 @@ $set sourceformat"free"
         DATA DIVISION.
            file section.
                copy "Inventory-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
 
 
                01 requestCtr pic 99 value 1. *> counter for process table
-               01 sub-itemCtr pic 99 value 1. *> counter for each item in process table
+               01 itemCtr pic 99 value 1. *> counter for each item in process table
 
-               
-               01 outOfStockCtr pic 99 value 1. *> counter for outOfStock table
 
            linkage section.
                01 process-Rec.
@@ -28,23 +26,18 @@ $set sourceformat"free"
                
                
                
-              01 outOfStock.  *> Array to store the items that has low or out of stock
-                   02 requestStock-Table occurs 10 times.
-                       03 lowStock-Table occurs 10 times.
-                           04 low-Item pic x(25).
-                           04 low-StockCount pic x(4).
-        PROCEDURE DIVISION using  process-Rec outOfStock.
+               
+        PROCEDURE DIVISION using  process-Rec.
                open i-o Inventory
                    
                    
                   perform varying requestCtr from 1 by 1 until requestCtr > 10
-                       move 1 to outOfStockCtr
 
-                       perform varying sub-itemCtr from 1 by 1 until sub-itemCtr > 10
-                           if process-Item(requestCtr sub-itemCtr) not = spaces
+                       perform varying itemCtr from 1 by 1 until itemCtr > 10
+                           if process-Item(requestCtr itemCtr) not = spaces
                            
                                *> Move the table item to key
-                               move process-Item(requestCtr sub-itemCtr) to itemName
+                               move process-Item(requestCtr itemCtr) to itemName
                                
                                *> Read the Inventory file to search the item
                                read Inventory key is itemName
@@ -54,18 +47,15 @@ $set sourceformat"free"
                                    not invalid key
                                   
                                   *> If the there are not enough stocks, don't rewrite anything    
-                                    if itemStock <= process-Quantity(requestCtr sub-itemCtr)
+                                    if itemStock < process-Quantity(requestCtr itemCtr)
                                        
-                                       *> Add item to low-stock table
-                                       move process-Item(requestCtr sub-itemCtr) to low-Item(requestCtr outOfStockCtr)
-                                       move itemStock to low-StockCount(requestCtr outOfStockCtr)
-                                       add 1 to outOfStockCtr *> move the table
+                                       display "Requested Item: " process-Item(requestCtr itemCtr) " is low on stock"
                                    
                                    
                                    else *> if the item stock greater than the requested amount for the quantity, rewrite
                                        
                                        *> Subtract the current stock from requested quantity 
-                                       compute itemStock = itemStock - process-Quantity(requestCtr sub-itemCtr)
+                                       compute itemStock = itemStock - process-Quantity(requestCtr itemCtr)
                                        rewrite invRec
                                   
                                    end-if
@@ -74,7 +64,7 @@ $set sourceformat"free"
                            end-if
                        end-perform
                    end-perform
- 
+                       
                close Inventory
        exit program.
  

@@ -15,9 +15,9 @@
 
 
         DATA DIVISION.
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
         
         PROCEDURE DIVISION.
         
-       STOP RUN.
+       exit program.
  

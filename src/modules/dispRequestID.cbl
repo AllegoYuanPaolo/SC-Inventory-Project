@@ -15,7 +15,7 @@ $set sourceformat"free"
                fd requestID.
                    01 reqID pic 9(5).
            
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
              01 IDslot pic 9 value 1. *> Constant: always only read from 1
 
            

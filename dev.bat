@@ -1,4 +1,4 @@
-:: Temporarily gives access to  all scripts across the working dir
+:: Temporarily gives access to  all scripts across the local dir
 :: This can be ported to other workspaces that has .bat files stored in \bin\scripts
 :: only place in ROOT folder
 @echo off

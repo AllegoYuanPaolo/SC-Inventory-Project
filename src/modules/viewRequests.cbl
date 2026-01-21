@@ -11,7 +11,7 @@ $set sourceformat"free"
         DATA DIVISION.
            file section.
                copy "Request-rec".
-            WORKING-STORAGE SECTION.
+            local-STORAGE SECTION.
 
             01 exitFlag pic x.
             01 itemCtr pic 99.
@@ -49,4 +49,4 @@ $set sourceformat"free"
            end-read
         end-perform
         close Requests
-       STOP RUN.
+       exit program.

@@ -39,7 +39,7 @@
            FD requestIDFile.
                01 reqID pic 9(2).
 
-           working-storage section.
+           local-storage section.
            
            01 Rkey pic 9 value 1.
 
