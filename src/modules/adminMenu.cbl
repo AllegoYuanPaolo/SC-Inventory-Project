@@ -16,7 +16,7 @@ $set sourceformat"free"
                 display "[3] - Search Item"
                 display "[4] - Withdraw Stock"
                 display "[5] - View Requests"
-                display "[6] - Reset Files[Devs only]"
+                *>display "[6] - Reset Files[Devs only]"
      
                 display "[00] - Exit Program"
                 display " >" no advancing
@@ -45,8 +45,8 @@ $set sourceformat"free"
                          call 'SYSTEM' using 'cls'
                          call "viewRequests"
                          call 'SYSTEM' using 'pause'
-                     when "6"
-                           perform resetCalls
+                     *>when "6"
+                     *>      perform resetCalls
                      when other
                          call 'SYSTEM' using 'cls'
                          display "Enter valid choices!"
@@ -62,7 +62,7 @@ $set sourceformat"free"
            end-perform
 
 
-       exit program.
+       stop run.
 
 
            resetCalls.
@@ -91,4 +91,4 @@ $set sourceformat"free"
                        display "Invalid Choice [1 or 2 only]"
                        display "Press any key to continue..."
                        accept omitted
-           end-perform
+           end-perform.
